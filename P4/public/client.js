@@ -1,28 +1,70 @@
 const socket = io();
+const messages = document.getElementById('messages');
+const input = document.getElementById('input');
+const send = document.getElementById('send');
+const typingIndicator = document.getElementById('typing');
+const notifSound = document.getElementById('notifSound');
+const userList = document.getElementById('user-list');
 
-const chat = document.getElementById("chat");
-const messageInput = document.getElementById("message");
-const sendButton = document.getElementById("send");
+let nickname = prompt('Introduce tu nickname:');
+socket.emit('setNickname', nickname);
 
-function appendMessage(msg) {
-  const p = document.createElement("p");
-  p.textContent = msg;
-  chat.appendChild(p);
-  chat.scrollTop = chat.scrollHeight;
-}
+//-- Recibir mensajes
+socket.on('message', msg => {
+    const item = document.createElement('div');
+    item.textContent = msg.user + ': ' + msg.text;
 
-socket.on("message", appendMessage);
+    if (msg.user === 'Sistema') {
+        item.classList.add('system');
+    } else if (msg.user === nickname) {
+        item.classList.add('own');
+    } else {
+        item.classList.add('other');
+        notifSound.play();
+    }
 
-sendButton.addEventListener("click", () => {
-  const msg = messageInput.value.trim();
-  if (msg) {
-    socket.emit("chatMessage", msg);
-    messageInput.value = "";
-  }
+    messages.appendChild(item);
+    messages.scrollTop = messages.scrollHeight;
 });
 
-messageInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    sendButton.click();
-  }
+//-- Enviar mensaje
+send.addEventListener('click', () => {
+    const msg = input.value.trim();
+    if (msg) {
+        socket.emit('chatMessage', msg);
+        socket.emit('stopTyping');
+        input.value = '';
+    }
 });
+
+input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') send.click();
+    else socket.emit('typing');
+});
+
+input.addEventListener('keyup', () => {
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(() => {
+        socket.emit('stopTyping');
+    }, 1000);
+});
+
+//-- Mostrar "escribiendo..."
+let typingTimeout;
+socket.on('typing', user => {
+    typingIndicator.textContent = `${user} está escribiendo...`;
+});
+
+socket.on('stopTyping', () => {
+    typingIndicator.textContent = '';
+});
+
+//-- Actualiza lista de usuarios
+socket.on('userList', users => {
+    userList.innerHTML = '';
+    users.forEach(user => {
+        const li = document.createElement('li');
+        li.textContent = user;
+        userList.appendChild(li);
+    });
+});s
