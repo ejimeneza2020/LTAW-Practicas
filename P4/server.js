@@ -69,7 +69,7 @@ io.on('connection', socket => {
         const nickname = nicknames[socket.id] || 'Usuario';
         delete nicknames[socket.id];
         usersConnected--;
-        io.emit('message', { user: 'Admin', text: `👋 ${nickname} se ha desconectado.` });
+        io.emit('message', { user: 'Admin', text: ` ${nickname} se ha desconectado.` });
         io.emit('userList', Object.values(nicknames));
     });
 });
