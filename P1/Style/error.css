@@ -1,0 +1,61 @@
+/* Fondo general */
+body {
+    font-family: 'Serif', serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Contenedor de la página de error */
+.contenedor {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    max-width: 600px;
+}
+
+.error h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #e74c3c;
+    font-family: 'Cinzel', serif;
+}
+
+/* Texto de error */
+.regreso p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+/* Enlace para regresar */
+.regreso a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #6a4c92;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: 2px solid #6a4c92;
+}
+
+.regreso a:hover {
+    background-color: #48216d;
+    border-color: #48216d;
+    color: #ffffff;
+}
+
+.regreso a:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pociones Mágicas</title>
+  <link rel="stylesheet" href="../Style/producto.css">
+</head>
+<body>
+  <header><h1>Pociones Mágicas</h1></header>
+  <main class="producto-detalle">
+    <img id="imagen-pocion" src="../Images/pocion_roja.png" alt="Poción mágica" class="producto-imagen">
+    <div class="producto-info">
+      <h2>Descripción</h2>
+      <p>Elige entre varios tipos de pociones mágicas: curación, invisibilidad y maná. Cada una tiene efectos únicos.</p>
+      <label for="tipoSelect">Elige tipo:</label>
+      <select id="tipoSelect">
+        <option value="pocionroja.png">Poción de Curación</option>
+        <option value="pocion_azul.png">Poción de Maná</option>
+        <option value="pocion_verde.png">Poción de Invisibilidad</option>
+      </select>
+      <h3>Precio: 400 polvos encantados</h3>
+      <div class="botones">
+        <a href="#" class="boton">Comprar</a>
+        <a href="../index.html" class="boton">Volver a la tienda</a>
+      </div>
+    </div>
+  </main>
+  <script>
+    const selector = document.getElementById('tipoSelect');
+    const imagen = document.getElementById('imagen-pocion');
+    selector.addEventListener('change', function() {
+      imagen.src = `../Images/${this.value}`;
+    });
+  </script>
+</body>
+</html>
