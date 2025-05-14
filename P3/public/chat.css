@@ -1,0 +1,75 @@
+/* Mantenemos los estilos generales */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #e5ded8;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+h2 {
+    text-align: center;
+    padding: 15px 0;
+    margin: 0;
+    background-color: #8c4312;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#chat-container {
+    display: flex;
+    max-width: 1200px;
+    height: calc(100vh - 55px);
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+/* Panel de mensajes corregido */
+#messages-panel {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #e0e0e0;
+}
+
+#messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 16px;
+    background-color: #e5ded8;
+}
+
+/* Área de entrada CORREGIDA */
+#input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #f0f2f5;
+    border-top: 1px solid #e9edef;
+}
+
+#input {
+    flex: 1;
+    padding: 9px 12px;
+    border: none;
+    border-radius: 20px;
+    background-color: white;
+    font-size: 14px;
+    outline: none;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+}
+
+#send {
+    margin-left: 8px;
+    padding: 0 16px;
+    background-color: #128c7e;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Resto de estilos se mantienen igual... */
